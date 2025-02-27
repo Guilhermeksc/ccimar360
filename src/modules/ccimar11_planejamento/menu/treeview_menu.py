@@ -3,8 +3,9 @@
 from PyQt6.QtWidgets import QTreeView, QAbstractItemView
 from PyQt6.QtGui import QStandardItemModel, QStandardItem
 from PyQt6.QtCore import Qt
-from .menu_callbacks import (  
-    show_criterio1_execucao_licitacao, show_criterio2_pagamento, show_chat_bot_local,
+from .menu_callbacks import (
+    show_criterios_pesos, show_objetivos_navais, show_objetos_auditaveis, show_om_representativas,  
+    show_criterio1_execucao_licitacao, show_criterio2_pagamento,
     show_criterio3_munic, show_criteriox_omps, show_criterio4_patrimonio,
     show_oficio_ccimar20_widget, show_gerar_notas_widget, show_chat_bot
 )
@@ -60,13 +61,18 @@ class TreeMenu(QTreeView):
             return item
 
         # Parent items with icons
+        item_criterios_pesos = add_parent("Critérios e Pesos", self.icons["criteria"], show_criterios_pesos)
+        add_item(item_criterios_pesos, "Objetivos Navais", show_objetivos_navais)
+        add_item(item_criterios_pesos, "Objetos Auditáveis", show_objetos_auditaveis)
+        add_item(item_criterios_pesos, "OM Representativas", show_om_representativas)
+
         item_paint = add_parent("PAINT", self.icons["analytics"])
         item_raint = add_parent("RAINT", self.icons["report"])
         item_cronograma = add_parent("Cronograma", self.icons["timeline"])
         item_processo = add_parent("Processo de Auditoria", self.icons["process"])
         item_monitoramento = add_parent("Monitoramento", self.icons["statistics"], show_oficio_ccimar20_widget)
         item_chat = add_parent("Chat", self.icons["chat"], show_chat_bot)
-        item_chat_local  = add_parent("Chat Local", self.icons["chat"], show_chat_bot_local)
+
         # Adding child items with their respective callbacks
         add_item(item_paint, "Execução/Licitação", show_criterio1_execucao_licitacao)
         add_item(item_paint, "Pagamento", show_criterio2_pagamento)

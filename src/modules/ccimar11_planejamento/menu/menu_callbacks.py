@@ -9,7 +9,10 @@ from .content.criterio5_periodo_sem_auditoria import create_criterio5_anos_sem_a
 from .content.criterio6_em_foco_externo import create_criterio6_foco_externo
 from .content.criteriox_omps import create_x
 from .content.chatbot import create_chatbot
-from .content.chatbot_local import create_chatbot_local
+from .content.criterios_pesos import create_criterios_pesos
+from .content.objetivos_navais import create_objetivos_navais
+from .content.objetos_auditaveis import create_objetos_auditaveis
+from .content.om_representativas import create_om_representativas
 
 def create_content(title_text):
     """Creates a content layout inside a styled QFrame."""
@@ -24,6 +27,22 @@ def create_content(title_text):
     layout.addWidget(title)
 
     return content_frame
+
+def show_criterios_pesos(view, icons):
+    view.clear_content()
+    view.content_layout.addWidget(create_criterios_pesos("Critérios e Pesos", view.database_model))
+
+def show_objetivos_navais(view):
+    view.clear_content()
+    view.content_layout.addWidget(create_objetivos_navais("Objetivos Navais", view.database_model))
+
+def show_objetos_auditaveis(view):
+    view.clear_content()
+    view.content_layout.addWidget(create_objetos_auditaveis("Objetos Auditáveis", view.database_model))
+
+def show_om_representativas(view):
+    view.clear_content()
+    view.content_layout.addWidget(create_om_representativas("OM Representativas", view.database_model))
 
 def show_criterio1_execucao_licitacao(view):
     view.clear_content()
@@ -101,9 +120,4 @@ def show_chat_bot(view, icons):
     view.clear_content()
     # Se necessário, passe os ícones para create_chatbot ou armazene-os em view
     view.content_layout.addWidget(create_chatbot("CCIMAR360 CHAT", view.database_model, icons))
-
-def show_chat_bot_local(view, icons):
-    view.clear_content()
-    # Se necessário, passe os ícones para create_chatbot ou armazene-os em view
-    view.content_layout.addWidget(create_chatbot_local("CCIMAR360 CHAT LOCAL", view.database_model, icons))
 

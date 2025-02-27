@@ -75,7 +75,7 @@ class CCIMAR12View(QMainWindow):
         """Carrega o conteúdo inicial dentro do content_widget."""
         self.clear_content()
 
-        initial_label = QLabel("Bem-vindo ao CCIMAR12", self.content_widget)
+        initial_label = QLabel(" CCIMAR12", self.content_widget)
         initial_label.setStyleSheet("font-size: 18px; color: #333; font-weight: bold;")
         initial_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
 

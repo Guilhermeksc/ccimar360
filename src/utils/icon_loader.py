@@ -57,6 +57,7 @@ def load_icons():
         "click": load_icon("click.png"),   
         "analytics": load_icon("analytics.png"),   
         "report": load_icon("report.png"),   
+        "criteria": load_icon("criteria.png"),   
 
         "doc": load_icon("doc.png"),
         "chat": load_icon("chat.png"),
