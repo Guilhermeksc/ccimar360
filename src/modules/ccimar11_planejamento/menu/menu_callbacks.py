@@ -13,6 +13,7 @@ from .content.criterios_pesos import create_criterios_pesos
 from .content.objetivos_navais import create_objetivos_navais
 from .content.objetos_auditaveis import create_objetos_auditaveis
 from .content.om_representativas import create_om_representativas
+from paths import OBJETIVOS_NAVAIS_PATH
 
 def create_content(title_text):
     """Creates a content layout inside a styled QFrame."""
@@ -34,7 +35,7 @@ def show_criterios_pesos(view, icons):
 
 def show_objetivos_navais(view):
     view.clear_content()
-    view.content_layout.addWidget(create_objetivos_navais("Objetivos Navais", view.database_model))
+    view.content_layout.addWidget(create_objetivos_navais("PEM 2024", view.database_model, icons=view.icons, json_file_path=OBJETIVOS_NAVAIS_PATH))
 
 def show_objetos_auditaveis(view):
     view.clear_content()
