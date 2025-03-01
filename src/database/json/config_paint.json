@@ -1,0 +1,54 @@
+{
+    "multiplicadores": {
+        "materialidade": 1,
+        "relevancia": 1,
+        "criticidade": 1
+    },
+    "objetos_auditaveis": {
+        "Processo A": {
+            "nr": "1",
+            "descricao": "Processo A",
+            "materialidade": "Até 10%",
+            "relevancia": "Vinculado a mais de três AEN",
+            "criticidade": "Registro acima de 2 anos",
+            "total": 264,
+            "tipo_risco": "Alto Risco"
+        },
+        "Processo B": {
+            "nr": "2",
+            "descricao": "Processo B",
+            "materialidade": "De 10% a 20%",
+            "relevancia": "Vinculado a uma AEN",
+            "criticidade": "Até 2 anos",
+            "total": 155,
+            "tipo_risco": "Alto Risco"
+        },
+        "Processo C": {
+            "nr": "3",
+            "descricao": "Processo C",
+            "materialidade": "Acima de 20%",
+            "relevancia": "Vinculado a uma AEN",
+            "criticidade": "Até 2 anos",
+            "total": 140,
+            "tipo_risco": "Alto Risco"
+        },
+        "Processo D": {
+            "nr": "4",
+            "descricao": "Processo D",
+            "materialidade": "Acima de 20%",
+            "relevancia": "Vinculado a mais de três AEN",
+            "criticidade": "Com registro reincidente até 2 anos",
+            "total": 295,
+            "tipo_risco": "Alto Risco"
+        },
+        "Processo E": {
+            "nr": "5",
+            "descricao": "Processo E",
+            "materialidade": "De 10% a 20%",
+            "relevancia": "Não",
+            "criticidade": "Sem registro",
+            "total": 145,
+            "tipo_risco": "Alto Risco"
+        }
+    }
+}

@@ -8,3 +8,5 @@ TEMPLATE_TEST2_PATH = CCIMAR11_DIR / "templates" / "template_test2.docx"
 TEMPLATE_TEST3_PATH = CCIMAR11_DIR / "templates" / "template_test3.docx"
 
 OBJETIVOS_NAVAIS_PATH = JSON_DIR / "objetivos_navais.json"
+MAT_RELEV_CRIT_PATH = JSON_DIR / "mat_relev_crit.json"
+CONFIG_PAINT_PATH = JSON_DIR / "config_paint.json"

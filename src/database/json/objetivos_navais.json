@@ -18,7 +18,8 @@
                                     "criterios_auditoria": [
                                         "Patrimônio",
                                         "Última Auditoria",
-                                        "Municiamento"
+                                        "Municiamento",
+                                        "Pagamento"
                                     ]
                                 }
                             ]
@@ -36,7 +37,12 @@
                             "acoes_estrategicas": [
                                 {
                                     "numero": "2.1.1",
-                                    "descricao": "Expandir a Rede de Estações Navais"
+                                    "descricao": "Expandir a Rede de Estações Navais",
+                                    "criterios_auditoria": [
+                                        "Execução/Licitação",
+                                        "Última Auditoria",
+                                        "Municiamento"
+                                    ]
                                 }
                             ]
                         }
@@ -58,7 +64,10 @@
                             "acoes_estrategicas": [
                                 {
                                     "numero": "6.1.1",
-                                    "descricao": "Implementar Sistema de Gestão Integrada"
+                                    "descricao": "Implementar Sistema de Gestão Integrada",
+                                    "criterios_auditoria": [
+                                        "Última Auditoria"
+                                    ]
                                 }
                             ]
                         }

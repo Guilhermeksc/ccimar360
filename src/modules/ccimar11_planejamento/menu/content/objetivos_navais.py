@@ -1,6 +1,6 @@
 from PyQt6.QtWidgets import (QLabel, QFrame, QHBoxLayout, QVBoxLayout, QTreeView,
                           QDialog, QPushButton, QLineEdit, QComboBox, QMessageBox,
-                          QFileDialog, QListWidget, QListWidgetItem, QWidget)
+                          QFileDialog, QListWidget, QListWidgetItem, QWidget, QSizePolicy)
 from PyQt6.QtGui import QStandardItemModel, QStandardItem, QFont, QIcon, QDrag, QCursor
 from PyQt6.QtCore import Qt, QMimeData
 import json
@@ -22,22 +22,30 @@ class CriterioWidget(QWidget):
     def __init__(self, criterio_text, delete_callback, parent=None):
         super().__init__(parent)
         layout = QHBoxLayout(self)
-        layout.setContentsMargins(0, 0, 0, 0)
-        layout.setSpacing(5)
+        # Remove todas as margens
+        layout.setContentsMargins(1, 1, 1, 1)
+        layout.setSpacing(2)
         
-        # Botão de exclusão
+        # Define o fundo como transparente
+        self.setAttribute(Qt.WidgetAttribute.WA_TranslucentBackground)
+        self.setStyleSheet("background: transparent;")
+        
+        # Botão de exclusão com tamanho reduzido
         delete_label = ClickableLabel()
         delete_label.setText("❌")  # Emoji X como ícone de exclusão
-        delete_label.setStyleSheet("color: #ff5555; font-size: 12px;")
+        delete_label.setStyleSheet("color: #ff5555; font-size: 10px; background: transparent; padding: 0px;")
+        delete_label.setFixedWidth(15)  # Largura fixa para o botão de exclusão
         delete_label.clicked_callback = delete_callback
         
         # Label do texto do critério
         text_label = QLabel(criterio_text)
-        text_label.setStyleSheet("color: #f8f8f2;")
+        text_label.setStyleSheet("color: #f8f8f2; background: transparent; padding: 0px;")
         
         layout.addWidget(delete_label)
-        layout.addWidget(text_label)
-        layout.addStretch()
+        layout.addWidget(text_label, 1)  # O texto expande para ocupar o espaço disponível
+        
+        # Ajusta o tamanho do widget para ser o menor possível
+        self.setSizePolicy(QSizePolicy.Policy.Minimum, QSizePolicy.Policy.Fixed)
 
 class CustomTreeView(QTreeView):
     def __init__(self, icons=None, parent=None):
@@ -52,21 +60,52 @@ class CustomTreeView(QTreeView):
                 color: #FFF;
                 font-size: 14px;
             }
+            /* Estilo base para todos os itens */
             QTreeView::item {
                 color: #FFFFFF;
-                padding-left: 0px;  /* Remove o espaçamento padrão */
+                height: 20px;
             }
-            QTreeView::item:has-children {
-                padding-left: 0px;  /* Remove o espaçamento para itens com filhos */
+            /* Perspectivas */
+            QTreeView::item:!has-siblings:!has-children,
+            QTreeView::branch:!has-siblings:!has-children {
+                font-size: 16px;
+                font-weight: bold;
+                color: #8AB4F7;  /* Azul principal */
             }
-            QStandardItem[text^="criterio:"] {
-                padding-left: 20px;  /* Adiciona espaçamento apenas para critérios */
+            /* OBNAV */
+            QTreeView::item:has-siblings:!has-children,
+            QTreeView::branch:has-siblings:!has-children {
+                font-size: 15px;
+                font-weight: 700;
+                color: #4C8BF5;  /* Azul mais escuro */
+            }
+            /* EN */
+            QTreeView::item:has-siblings:has-children,
+            QTreeView::branch:has-siblings:has-children {
+                font-size: 14px;
+                font-weight: 600;
+                font-style: italic;
+                color: #B6D4FF;  /* Azul mais claro */
+            }
+            /* AEN */
+            QTreeView::item:has-children,
+            QTreeView::branch:has-children {
+                font-size: 13px;
+                font-weight: 500;
+                color: #63A1FF;  /* Azul médio */
+            }
+            /* Critérios */
+            QTreeView::item,
+            QTreeView::branch {
+                font-size: 12px;
+                font-weight: normal;
+                color: #E8F1FF;  /* Azul muito claro */
             }
             QTreeView::item:selected {
-                background-color: #6272a4;
+                background-color: #3B71CA;  /* Azul escuro para seleção */
             }
             QTreeView::item:hover {
-                background-color: black;
+                background-color: #1E3A8A;  /* Azul muito escuro para hover */
             }
         """)
 
@@ -90,7 +129,13 @@ class CustomTreeView(QTreeView):
             return
             
         # Remove o critério do modelo visual
-        criterio_text = criterio_item.text()
+        criterio_text = criterio_item.data(Qt.ItemDataRole.UserRole)
+        if criterio_text and criterio_text.startswith('criterio: '):
+            criterio_text = criterio_text[len('criterio: '):]
+        else:
+            print("[DEBUG] Texto do critério não encontrado")
+            return
+            
         print(f"[DEBUG] Removendo critério: {criterio_text}")
         aen_item.removeRow(criterio_item.row())
         
@@ -109,8 +154,11 @@ class CustomTreeView(QTreeView):
                                     if 'criterios_auditoria' in aen:
                                         if criterio_text in aen['criterios_auditoria']:
                                             aen['criterios_auditoria'].remove(criterio_text)
+                                            print(f"[DEBUG] Critério removido do JSON: {criterio_text}")
                                             save_objetivos_navais_data(data, self.json_file_path)
+                                            return
                                     break
+                print("[DEBUG] Critério não encontrado no JSON para remoção")
 
     def add_criterio_to_tree(self, criterio, parent_item, data=None, is_initial_load=False):
         """Adiciona um critério ao TreeView"""
@@ -119,7 +167,7 @@ class CustomTreeView(QTreeView):
         criterio_item = QStandardItem()
         criterio_item.setEditable(False)
         criterio_item.setData(f"criterio: {criterio}", Qt.ItemDataRole.UserRole)
-        criterio_item.setText(criterio)  # Adicionando o texto ao item
+        criterio_item.setText("")  # Define texto vazio para evitar sobreposição
         
         # Cria o widget personalizado com o botão de exclusão
         widget = CriterioWidget(
@@ -250,7 +298,6 @@ def create_objetivos_navais(title_text, database_model, icons=None, json_file_pa
     content_frame.setStyleSheet("""
         QFrame { 
             padding: 10px;
-            background-color: #44475A; 
             border-radius: 8px;
         }
         QPushButton {
@@ -287,7 +334,7 @@ def create_objetivos_navais(title_text, database_model, icons=None, json_file_pa
     left_layout.setSpacing(5)
     
     # Título
-    title_label = QLabel(title_text or "PEM 2024")
+    title_label = QLabel(title_text or "PEM 2040")
     title_font = QFont("Arial Black", 20)
     title_label.setFont(title_font)
     title_label.setStyleSheet("color: #FFFFFF;")
@@ -338,7 +385,7 @@ def create_objetivos_navais(title_text, database_model, icons=None, json_file_pa
                                 criterio_item = QStandardItem()
                                 criterio_item.setEditable(False)
                                 criterio_item.setData(f"criterio: {criterio}", Qt.ItemDataRole.UserRole)
-                                criterio_item.setText(criterio)
+                                criterio_item.setText("")  # Define texto vazio para evitar sobreposição
                                 aen_item.insertRow(0, criterio_item)
                                 
                                 # Cria e define o widget personalizado para o critério
