@@ -10,9 +10,6 @@ import json
 from pathlib import Path
 from paths import MAT_RELEV_CRIT_PATH, CONFIG_PAINT_PATH
 
-# Caminho para o arquivo JSON de critérios dos objetos auditáveis
-OBJETOS_CRITERIOS_PATH = os.path.join(os.path.dirname(CONFIG_PAINT_PATH), 'objetos_criterios.json')
-
 def load_multiplicadores():
     """
     Carrega os multiplicadores do arquivo de configuração.
@@ -78,8 +75,8 @@ def load_objetos_criterios():
         dict: Dicionário com os critérios dos objetos auditáveis
     """
     try:
-        if os.path.exists(OBJETOS_CRITERIOS_PATH):
-            with open(OBJETOS_CRITERIOS_PATH, 'r', encoding='utf-8') as f:
+        if os.path.exists(CONFIG_PAINT_PATH):
+            with open(CONFIG_PAINT_PATH, 'r', encoding='utf-8') as f:
                 return json.load(f)
         return {}
     except Exception as e:
@@ -94,7 +91,7 @@ def save_objetos_criterios(criterios_data):
         criterios_data (dict): Dicionário com os critérios dos objetos auditáveis
     """
     try:
-        with open(OBJETOS_CRITERIOS_PATH, 'w', encoding='utf-8') as f:
+        with open(CONFIG_PAINT_PATH, 'w', encoding='utf-8') as f:
             json.dump(criterios_data, f, indent=4, ensure_ascii=False)
     except Exception as e:
         print(f"Erro ao salvar critérios dos objetos: {e}")
@@ -131,3 +128,59 @@ def get_objeto_criterios(objeto_id):
     """
     criterios_data = load_objetos_criterios()
     return criterios_data.get(objeto_id) 
+
+def update_objetos_calculados():
+    """
+    Atualiza os valores calculados para cada objeto com base nos critérios selecionados
+    e nos multiplicadores, armazenando o resultado na chave 'calculos' do CONFIG_PAINT_PATH.
+    """
+    # Carrega a configuração atual
+    if os.path.exists(CONFIG_PAINT_PATH):
+        with open(CONFIG_PAINT_PATH, "r", encoding="utf-8") as f:
+            config = json.load(f)
+    else:
+        config = {
+            "multiplicadores": {"materialidade": 4, "relevancia": 2, "criticidade": 4},
+            "objetos": []
+        }
+    
+    # Obter os multiplicadores
+    multiplicadores = config.get("multiplicadores", {"materialidade": 4, "relevancia": 2, "criticidade": 4})
+    calculos = {}
+    
+    # Para cada objeto na lista, identificado pelo campo "Objetos Auditáveis"
+    for obj in config.get("objetos", []):
+        obj_id = obj.get("Objetos Auditáveis")
+        # Obter os critérios selecionados para este objeto
+        criterios = get_objeto_criterios(obj_id)  # Essa função deve retornar um dicionário com a chave 'valores_calculados'
+        if criterios and "valores_calculados" in criterios:
+            valores = criterios["valores_calculados"]
+        else:
+            valores = {"materialidade": 0, "relevancia": 0, "criticidade": 0}
+        
+        # Calcular o total aplicando os multiplicadores
+        total = (valores.get("materialidade", 0) * multiplicadores.get("materialidade", 1) +
+                 valores.get("relevancia", 0) * multiplicadores.get("relevancia", 1) +
+                 valores.get("criticidade", 0) * multiplicadores.get("criticidade", 1))
+        
+        # Definir o tipo de risco com base no total
+        if total >= 80:
+            tipo_risco = "Alto"
+        elif total >= 50:
+            tipo_risco = "Médio"
+        else:
+            tipo_risco = "Baixo"
+        
+        # Armazenar os valores calculados para este objeto
+        calculos[obj_id] = {
+            "materialidade": valores.get("materialidade", 0),
+            "relevancia": valores.get("relevancia", 0),
+            "criticidade": valores.get("criticidade", 0),
+            "total": total,
+            "tipo_risco": tipo_risco
+        }
+    
+    # Atualizar a configuração com os dados calculados
+    config["calculos"] = calculos
+    with open(CONFIG_PAINT_PATH, "w", encoding="utf-8") as f:
+        json.dump(config, f, indent=4, ensure_ascii=False)

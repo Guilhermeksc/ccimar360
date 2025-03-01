@@ -10,14 +10,15 @@ from .dialogs import MultipicadoresDialog, DetalhesDialog, CriteriosViewDialog
 from .persistence import (
     load_multiplicadores, save_multiplicadores,
     load_objetos_criterios, save_objetos_criterios,
-    update_objeto_criterios, get_objeto_criterios
+    update_objeto_criterios, get_objeto_criterios,
+    update_objetos_calculados
 )
 from .calculations import (
-    recalculate_all_objects,
+    recalculate_objeto,
     get_pontuacao_from_descricao
 )
 from .ui import create_objetos_auditaveis
-from .criterios_manager import CriteriosManager, CriteriosDialog
+from .criterios_manager import CriteriosManager
 
 __all__ = [
     'ObjetosAuditaveisModel',
@@ -30,6 +31,7 @@ __all__ = [
     'save_objetos_criterios',
     'update_objeto_criterios',
     'get_objeto_criterios',
+    'update_objetos_calculados',
     'recalculate_all_objects',
     'get_pontuacao_from_descricao',
     'create_objetos_auditaveis',

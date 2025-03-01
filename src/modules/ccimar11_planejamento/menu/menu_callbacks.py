@@ -39,7 +39,7 @@ def show_objetivos_navais(view):
 
 def show_objetos_auditaveis(view):
     view.clear_content()
-    view.content_layout.addWidget(create_objetos_auditaveis("Objetos Auditáveis", view.database_model))
+    view.content_layout.addWidget(create_objetos_auditaveis("Objetos Auditáveis"))
 
 def show_om_representativas(view):
     view.clear_content()

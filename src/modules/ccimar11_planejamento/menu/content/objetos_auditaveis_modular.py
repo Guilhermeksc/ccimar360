@@ -16,14 +16,15 @@ from .objetos_auditaveis import (
     save_objetos_criterios,
     update_objeto_criterios,
     get_objeto_criterios,
-    recalculate_all_objects,
+    update_objetos_calculados,
+    recalculate_objeto,
     get_pontuacao_from_descricao,
     CriteriosManager,
     CriteriosDialog
 )
 from .objetos_auditaveis.ui import create_objetos_auditaveis
 
-def create_objetos_auditaveis_modular(title_text, database_model):
+def create_objetos_auditaveis_modular(title_text):
     """
     Cria a interface para objetos auditáveis usando a versão modularizada.
     
@@ -37,4 +38,4 @@ def create_objetos_auditaveis_modular(title_text, database_model):
     Returns:
         QFrame: Frame contendo a interface de objetos auditáveis
     """
-    return create_objetos_auditaveis(title_text, database_model) 
+    return create_objetos_auditaveis(title_text) 
