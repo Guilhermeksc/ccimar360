@@ -1,77 +1,147 @@
-"""
-Módulo para cálculos relacionados aos objetos auditáveis.
+import os
+import json
+from PyQt6.QtWidgets import (
+    QVBoxLayout, QHBoxLayout, QLabel,
+    QMessageBox, QDialog, QDialogButtonBox,
+    QSpinBox
+)
+from paths import CONFIG_PAINT_PATH
+from .tableview import load_config
+from PyQt6.QtCore import QTimer
 
-Este módulo contém funções para calcular pontuações e totais dos objetos auditáveis.
-"""
+class MultiplicadoresDialog(QDialog):
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setWindowTitle("Editar Multiplicadores")
+        self.setMinimumSize(300, 200)
 
-from .persistence import get_objeto_criterios, update_objeto_criterios
+        # Estilos do diálogo
+        self.setStyleSheet("""
+            QDialog {
+                background-color: #1E1E2E;
+                color: #FFFFFF;
+                border-radius: 8px;
+            }
+            QLabel {
+                color: #FFFFFF;
+                font-size: 14px;
+                font-weight: bold;
+            }
+            QSpinBox {
+                background-color: #FFFFFF;
+                color: #000000;
+                padding: 5px;
+                border-radius: 5px;
+                font-size: 14px;
+            }
+            QPushButton {
+                background-color: #4CAF50;
+                color: white;
+                font-weight: bold;
+                padding: 8px 16px;
+                border-radius: 4px;
+            }
+            QPushButton:hover {
+                background-color: #45a049;
+            }
+            QPushButton:pressed {
+                background-color: #3d8b40;
+            }
+            QPushButton[text="Cancelar"] {
+                background-color: #f44336;
+            }
+            QPushButton[text="Cancelar"]:hover {
+                background-color: #e53935;
+            }
+        """)
+
+        # Layout principal
+        layout = QVBoxLayout(self)
+        self.inputs = {}
+
+        # Carregar os multiplicadores do JSON
+        config = load_config()
+        multiplicadores = config.get("multiplicador", {
+            "materialidade": 4,
+            "relevancia": 2,
+            "criticidade": 4
+        })
+
+        # Criar campos para editar os multiplicadores
+        for key, label_text in [("materialidade", "Materialidade"), ("relevancia", "Relevância"), ("criticidade", "Criticidade")]:
+            hbox = QHBoxLayout()
+            label = QLabel(f"{label_text}:")
+            spinbox = QSpinBox()
+            spinbox.setRange(1, 10)  # Intervalo permitido
+            spinbox.setValue(multiplicadores.get(key, 4))
+            spinbox.setMinimumWidth(60)
+            hbox.addWidget(label)
+            hbox.addWidget(spinbox)
+            layout.addLayout(hbox)
+            self.inputs[key] = spinbox
+
+        # Botões de ação
+        button_box = QDialogButtonBox(QDialogButtonBox.StandardButton.Save | QDialogButtonBox.StandardButton.Cancel)
+        button_box.accepted.connect(self.save_multiplicadores)
+        button_box.rejected.connect(self.reject)
+        layout.addWidget(button_box)
+
+    def save_multiplicadores(self):
+        """ Salva os multiplicadores no JSON e atualiza a interface """
+        config = load_config()
+        if not config:
+            QMessageBox.critical(self, "Erro", "Falha ao carregar a configuração.")
+            return
+
+        # Atualizar os multiplicadores
+        config["multiplicador"] = {
+            "materialidade": self.inputs["materialidade"].value(),
+            "relevancia": self.inputs["relevancia"].value(),
+            "criticidade": self.inputs["criticidade"].value()
+        }
 
 
-def recalculate_objeto(obj, criterios, multiplicadores):
-    """
-    Recalcula o total e o tipo de risco para um objeto com base nos critérios selecionados.
-    
-    Args:
-        obj (dict): Objeto do CONFIG_PAINT_PATH com os critérios selecionados.
-        criterios (dict): Dados de MAT_RELEV_CRIT_PATH.
-        multiplicadores (dict): Exemplo: {"materialidade": 1, "relevancia": 1, "criticidade": 1}
-        
-    Returns:
-        dict: Objeto atualizado com 'total' e 'tipo_risco'.
-    """
-    total = 0
-    for tipo in ['materialidade', 'relevancia', 'criticidade']:
-        pontuacao = 0
-        crit_sel = obj.get(tipo)
-        if crit_sel and isinstance(crit_sel, dict):
-            criterio_nome = crit_sel.get("Critério")
-            valor_selecionado = crit_sel.get("Valor")
-            for criterio in criterios.get(tipo, []):
-                if criterio.get("Critério") == criterio_nome:
-                    for opcao in criterio.get("opcoes", []):
-                        if opcao.get("Descrição") == valor_selecionado:
-                            pontuacao = opcao.get("Pontuação", 0)
-                            break
-                    break
-        total += pontuacao * multiplicadores.get(tipo, 1)
-    
-    if total >= 80:
-        tipo_risco = "Alto"
-    elif total >= 50:
-        tipo_risco = "Médio"
-    else:
-        tipo_risco = "Baixo"
-    
-    obj["total"] = total
-    obj["tipo_risco"] = tipo_risco
-    return obj
+
+        # Salvar no arquivo JSON
+        try:
+            with open(CONFIG_PAINT_PATH, "w", encoding="utf-8") as f:
+                json.dump(config, f, indent=4, ensure_ascii=False)
+
+            # Criar a QMessageBox personalizada
+            msg_box = QMessageBox(self)
+            msg_box.setIcon(QMessageBox.Icon.Information)
+            msg_box.setWindowTitle("Sucesso")
+            msg_box.setText("Multiplicadores atualizados com sucesso!")
+            msg_box.setStandardButtons(QMessageBox.StandardButton.Ok)
+
+            # Aplicar o CSS para manter o tema escuro
+            msg_box.setStyleSheet("""
+                QMessageBox {
+                    background-color: #1E1E2E;
+                    color: white;
+                    font-size: 14px;
+                    border-radius: 8px;
+                }
+                QPushButton {
+                    background-color: #4CAF50;
+                    color: white;
+                    padding: 8px 16px;
+                    border-radius: 4px;
+                }
+                QPushButton:hover {
+                    background-color: #45a049;
+                }
+                QPushButton:pressed {
+                    background-color: #3d8b40;
+                }
+            """)
+
+            QTimer.singleShot(1000, msg_box.accept)
+
+            msg_box.exec()  # Exibir a mensagem
+
+            self.accept()  # Fecha o diálogo após salvar
+        except Exception as e:
+            QMessageBox.critical(self, "Erro", f"Falha ao salvar no JSON: {e}")
 
 
-def get_pontuacao_from_descricao(criterios_manager, tipo, descricao):
-    """
-    Obtém a pontuação correspondente a uma descrição de critério.
-    
-    Args:
-        criterios_manager: Gerenciador de critérios
-        tipo (str): Tipo de critério (materialidade, relevancia, criticidade)
-        descricao (str): Descrição do critério
-        
-    Returns:
-        int: Pontuação correspondente à descrição ou 0 se não encontrada
-    """
-    if not descricao:
-        return 0
-        
-    criterios = criterios_manager.get_criterios(tipo)
-    
-    for criterio in criterios:
-        # Verificar se o critério é um dicionário
-        if isinstance(criterio, dict) and "opcoes" in criterio:
-            for opcao in criterio["opcoes"]:
-                if opcao.get("descricao") == descricao:
-                    return opcao.get("pontuacao", 0)
-        # Se for uma string, não tem opções para verificar
-        elif isinstance(criterio, str):
-            continue
-    
-    return 0 

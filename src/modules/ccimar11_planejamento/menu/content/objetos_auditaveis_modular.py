@@ -17,10 +17,11 @@ from .objetos_auditaveis import (
     update_objeto_criterios,
     get_objeto_criterios,
     update_objetos_calculados,
-    recalculate_objeto,
-    get_pontuacao_from_descricao,
+    MultiplicadoresDialog,
     CriteriosManager,
-    CriteriosDialog
+    CustomTableView,
+    ExcelModelManager,
+    load_config
 )
 from .objetos_auditaveis.ui import create_objetos_auditaveis
 

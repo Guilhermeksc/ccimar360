@@ -323,7 +323,7 @@ class MainWindow(QMainWindow):
         self.content_widget = QFrame()
         self.content_widget.setObjectName("contentWidget")
         self.content_widget.setLayout(self.content_layout)
-        self.content_widget.setMinimumSize(1050, 700)
+        self.content_widget.setMinimumSize(1400, 750)
         self.content_widget.setFrameStyle(QFrame.Shape.NoFrame)
         self.content_widget.setStyleSheet("""
             QFrame#contentWidget {

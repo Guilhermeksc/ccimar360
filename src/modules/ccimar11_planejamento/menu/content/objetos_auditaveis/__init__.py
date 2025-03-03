@@ -14,9 +14,9 @@ from .persistence import (
     update_objetos_calculados
 )
 from .calculations import (
-    recalculate_objeto,
-    get_pontuacao_from_descricao
+    MultiplicadoresDialog
 )
+from .tableview import CustomTableView, ExcelModelManager, load_config
 from .ui import create_objetos_auditaveis
 from .criterios_manager import CriteriosManager
 
@@ -36,5 +36,8 @@ __all__ = [
     'get_pontuacao_from_descricao',
     'create_objetos_auditaveis',
     'CriteriosManager',
-    'CriteriosDialog'
+    'CriteriosDialog',
+    'CustomTableView',
+    'ExcelModelManager',
+    'load_config'
 ] 

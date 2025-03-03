@@ -4,143 +4,502 @@
             "nr": 1,
             "descricao": "Processo A",
             "materialidade": {
-                "Vulto Financeiro": 70
+                "Vulto Financeiro": {
+                    "valor": 20,
+                    "texto": "Acima de 30%"
+                }
             },
             "relevancia": {
-                "Vinculação a Ação Estratégica Naval (AEN)": 0,
-                "Vinculação ao Portfólio Estratégico": 0,
-                "Vinculação à Ação Orçamentária da LOA": 0
+                "Vinculação a Ação Estratégica Naval (AEN)": {
+                    "valor": 2,
+                    "texto": "Vinculado a uma AEN"
+                },
+                "Vinculação ao Portfólio Estratégico": {
+                    "valor": 0,
+                    "texto": "Não"
+                },
+                "Vinculação à Ação Orçamentária da LOA": {
+                    "valor": 0,
+                    "texto": "Não"
+                }
             },
             "criticidade": {
-                "Tempo sem Auditoria": 0,
-                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": 0,
-                "Repercussão Externa Negativa (Denúncias/Representações)": 0
-            }
+                "Tempo sem Auditoria": {
+                    "valor": 2,
+                    "texto": "Até 2 anos"
+                },
+                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": {
+                    "valor": 20,
+                    "texto": "Com registro reincidente até 2 anos"
+                },
+                "Repercussão Externa Negativa (Denúncias/Representações)": {
+                    "valor": 2,
+                    "texto": "Sem registro"
+                }
+            },
+            "total": 180
         },
         {
             "nr": 2,
             "descricao": "Processo B",
             "materialidade": {
-                "Vulto Financeiro": 55
+                "Vulto Financeiro": {
+                    "valor": 0,
+                    "texto": ""
+                }
             },
             "relevancia": {
-                "Vinculação a Ação Estratégica Naval (AEN)": 0,
-                "Vinculação ao Portfólio Estratégico": 0,
-                "Vinculação à Ação Orçamentária da LOA": 0
+                "Vinculação a Ação Estratégica Naval (AEN)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Vinculação ao Portfólio Estratégico": {
+                    "valor": 0,
+                    "texto": "Não"
+                },
+                "Vinculação à Ação Orçamentária da LOA": {
+                    "valor": 0,
+                    "texto": "Não"
+                }
             },
             "criticidade": {
-                "Tempo sem Auditoria": 0,
-                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": 0,
-                "Repercussão Externa Negativa (Denúncias/Representações)": 0
+                "Tempo sem Auditoria": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Repercussão Externa Negativa (Denúncias/Representações)": {
+                    "valor": 0,
+                    "texto": ""
+                }
             }
         },
         {
             "nr": 3,
             "descricao": "Processo C",
             "materialidade": {
-                "Vulto Financeiro": 0
+                "Vulto Financeiro": {
+                    "valor": 0,
+                    "texto": ""
+                }
             },
             "relevancia": {
-                "Vinculação a Ação Estratégica Naval (AEN)": 0,
-                "Vinculação ao Portfólio Estratégico": 0,
-                "Vinculação à Ação Orçamentária da LOA": 0
+                "Vinculação a Ação Estratégica Naval (AEN)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Vinculação ao Portfólio Estratégico": {
+                    "valor": 0,
+                    "texto": "Não"
+                },
+                "Vinculação à Ação Orçamentária da LOA": {
+                    "valor": 0,
+                    "texto": "Não"
+                }
             },
             "criticidade": {
-                "Tempo sem Auditoria": 0,
-                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": 0,
-                "Repercussão Externa Negativa (Denúncias/Representações)": 0
+                "Tempo sem Auditoria": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Repercussão Externa Negativa (Denúncias/Representações)": {
+                    "valor": 0,
+                    "texto": ""
+                }
             }
         },
         {
             "nr": 4,
             "descricao": "Processo D",
             "materialidade": {
-                "Vulto Financeiro": 0
+                "Vulto Financeiro": {
+                    "valor": 0,
+                    "texto": ""
+                }
             },
             "relevancia": {
-                "Vinculação a Ação Estratégica Naval (AEN)": 0,
-                "Vinculação ao Portfólio Estratégico": 0,
-                "Vinculação à Ação Orçamentária da LOA": 0
+                "Vinculação a Ação Estratégica Naval (AEN)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Vinculação ao Portfólio Estratégico": {
+                    "valor": 0,
+                    "texto": "Não"
+                },
+                "Vinculação à Ação Orçamentária da LOA": {
+                    "valor": 0,
+                    "texto": "Não"
+                }
             },
             "criticidade": {
-                "Tempo sem Auditoria": 0,
-                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": 0,
-                "Repercussão Externa Negativa (Denúncias/Representações)": 0
+                "Tempo sem Auditoria": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Repercussão Externa Negativa (Denúncias/Representações)": {
+                    "valor": 0,
+                    "texto": ""
+                }
             }
         },
         {
             "nr": 5,
             "descricao": "Processo E",
             "materialidade": {
-                "Vulto Financeiro": 0
+                "Vulto Financeiro": {
+                    "valor": 0,
+                    "texto": ""
+                }
             },
             "relevancia": {
-                "Vinculação a Ação Estratégica Naval (AEN)": 0,
-                "Vinculação ao Portfólio Estratégico": 0,
-                "Vinculação à Ação Orçamentária da LOA": 0
+                "Vinculação a Ação Estratégica Naval (AEN)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Vinculação ao Portfólio Estratégico": {
+                    "valor": 0,
+                    "texto": "Não"
+                },
+                "Vinculação à Ação Orçamentária da LOA": {
+                    "valor": 0,
+                    "texto": "Não"
+                }
             },
             "criticidade": {
-                "Tempo sem Auditoria": 0,
-                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": 0,
-                "Repercussão Externa Negativa (Denúncias/Representações)": 0
+                "Tempo sem Auditoria": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Repercussão Externa Negativa (Denúncias/Representações)": {
+                    "valor": 0,
+                    "texto": ""
+                }
             }
         },
         {
             "nr": 6,
             "descricao": "Processo F",
             "materialidade": {
-                "Vulto Financeiro": 0
+                "Vulto Financeiro": {
+                    "valor": 0,
+                    "texto": ""
+                }
             },
             "relevancia": {
-                "Vinculação a Ação Estratégica Naval (AEN)": 0,
-                "Vinculação ao Portfólio Estratégico": 0,
-                "Vinculação à Ação Orçamentária da LOA": 0
+                "Vinculação a Ação Estratégica Naval (AEN)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Vinculação ao Portfólio Estratégico": {
+                    "valor": 0,
+                    "texto": "Não"
+                },
+                "Vinculação à Ação Orçamentária da LOA": {
+                    "valor": 0,
+                    "texto": "Não"
+                }
             },
             "criticidade": {
-                "Tempo sem Auditoria": 0,
-                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": 0,
-                "Repercussão Externa Negativa (Denúncias/Representações)": 0
+                "Tempo sem Auditoria": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Repercussão Externa Negativa (Denúncias/Representações)": {
+                    "valor": 0,
+                    "texto": ""
+                }
             }
         },
         {
             "nr": 7,
             "descricao": "Processo G",
             "materialidade": {
-                "Vulto Financeiro": 0
+                "Vulto Financeiro": {
+                    "valor": 0,
+                    "texto": ""
+                }
             },
             "relevancia": {
-                "Vinculação a Ação Estratégica Naval (AEN)": 0,
-                "Vinculação ao Portfólio Estratégico": 0,
-                "Vinculação à Ação Orçamentária da LOA": 0
+                "Vinculação a Ação Estratégica Naval (AEN)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Vinculação ao Portfólio Estratégico": {
+                    "valor": 0,
+                    "texto": "Não"
+                },
+                "Vinculação à Ação Orçamentária da LOA": {
+                    "valor": 0,
+                    "texto": "Não"
+                }
             },
             "criticidade": {
-                "Tempo sem Auditoria": 0,
-                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": 0,
-                "Repercussão Externa Negativa (Denúncias/Representações)": 0
+                "Tempo sem Auditoria": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Repercussão Externa Negativa (Denúncias/Representações)": {
+                    "valor": 0,
+                    "texto": ""
+                }
             }
         },
         {
             "nr": 8,
             "descricao": "Teste",
             "materialidade": {
-                "Vulto Financeiro": 0
+                "Vulto Financeiro": {
+                    "valor": 0,
+                    "texto": ""
+                }
             },
             "relevancia": {
-                "Vinculação a Ação Estratégica Naval (AEN)": 0,
-                "Vinculação ao Portfólio Estratégico": 0,
-                "Vinculação à Ação Orçamentária da LOA": 0
+                "Vinculação a Ação Estratégica Naval (AEN)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Vinculação ao Portfólio Estratégico": {
+                    "valor": 0,
+                    "texto": "Não"
+                },
+                "Vinculação à Ação Orçamentária da LOA": {
+                    "valor": 0,
+                    "texto": "Não"
+                }
             },
             "criticidade": {
-                "Tempo sem Auditoria": 0,
-                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": 0,
-                "Repercussão Externa Negativa (Denúncias/Representações)": 0
+                "Tempo sem Auditoria": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Repercussão Externa Negativa (Denúncias/Representações)": {
+                    "valor": 0,
+                    "texto": ""
+                }
+            }
+        },
+        {
+            "nr": 9,
+            "descricao": "Teste",
+            "materialidade": {
+                "Vulto Financeiro": {
+                    "valor": 0,
+                    "texto": ""
+                }
+            },
+            "relevancia": {
+                "Vinculação a Ação Estratégica Naval (AEN)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Vinculação ao Portfólio Estratégico": {
+                    "valor": 0,
+                    "texto": "Não"
+                },
+                "Vinculação à Ação Orçamentária da LOA": {
+                    "valor": 0,
+                    "texto": "Não"
+                }
+            },
+            "criticidade": {
+                "Tempo sem Auditoria": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Repercussão Externa Negativa (Denúncias/Representações)": {
+                    "valor": 0,
+                    "texto": ""
+                }
+            }
+        },
+        {
+            "nr": 10,
+            "descricao": "Teste",
+            "materialidade": {
+                "Vulto Financeiro": {
+                    "valor": 0,
+                    "texto": ""
+                }
+            },
+            "relevancia": {
+                "Vinculação a Ação Estratégica Naval (AEN)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Vinculação ao Portfólio Estratégico": {
+                    "valor": 0,
+                    "texto": "Não"
+                },
+                "Vinculação à Ação Orçamentária da LOA": {
+                    "valor": 0,
+                    "texto": "Não"
+                }
+            },
+            "criticidade": {
+                "Tempo sem Auditoria": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Repercussão Externa Negativa (Denúncias/Representações)": {
+                    "valor": 0,
+                    "texto": ""
+                }
+            }
+        },
+        {
+            "nr": 11,
+            "descricao": "Teste",
+            "materialidade": {
+                "Vulto Financeiro": {
+                    "valor": 0,
+                    "texto": ""
+                }
+            },
+            "relevancia": {
+                "Vinculação a Ação Estratégica Naval (AEN)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Vinculação ao Portfólio Estratégico": {
+                    "valor": 0,
+                    "texto": "Não"
+                },
+                "Vinculação à Ação Orçamentária da LOA": {
+                    "valor": 0,
+                    "texto": "Não"
+                }
+            },
+            "criticidade": {
+                "Tempo sem Auditoria": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Repercussão Externa Negativa (Denúncias/Representações)": {
+                    "valor": 0,
+                    "texto": ""
+                }
+            }
+        },
+        {
+            "nr": 12,
+            "descricao": "Teste",
+            "materialidade": {
+                "Vulto Financeiro": {
+                    "valor": 0,
+                    "texto": ""
+                }
+            },
+            "relevancia": {
+                "Vinculação a Ação Estratégica Naval (AEN)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Vinculação ao Portfólio Estratégico": {
+                    "valor": 0,
+                    "texto": "Não"
+                },
+                "Vinculação à Ação Orçamentária da LOA": {
+                    "valor": 0,
+                    "texto": "Não"
+                }
+            },
+            "criticidade": {
+                "Tempo sem Auditoria": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Repercussão Externa Negativa (Denúncias/Representações)": {
+                    "valor": 0,
+                    "texto": ""
+                }
+            }
+        },
+        {
+            "nr": 13,
+            "descricao": "Teste",
+            "materialidade": {
+                "Vulto Financeiro": {
+                    "valor": 0,
+                    "texto": ""
+                }
+            },
+            "relevancia": {
+                "Vinculação a Ação Estratégica Naval (AEN)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Vinculação ao Portfólio Estratégico": {
+                    "valor": 0,
+                    "texto": "Não"
+                },
+                "Vinculação à Ação Orçamentária da LOA": {
+                    "valor": 0,
+                    "texto": "Não"
+                }
+            },
+            "criticidade": {
+                "Tempo sem Auditoria": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Eventos Apuratórios Internos (TCE/IPM/Sindicância)": {
+                    "valor": 0,
+                    "texto": ""
+                },
+                "Repercussão Externa Negativa (Denúncias/Representações)": {
+                    "valor": 0,
+                    "texto": ""
+                }
             }
         }
     ],
     "multiplicador": {
-        "materialidade": 4,
-        "relevancia": 2,
-        "criticidade": 4
+        "materialidade": 5,
+        "relevancia": 3,
+        "criticidade": 5
     },
     "pontuacao_criterios": {
         "relevancia": [
@@ -161,7 +520,11 @@
                         "Pontuação": 5
                     },
                     {
-                        "Descrição": "Vinculado a mais de três AEN",
+                        "Descrição": "Vinculado a quatro AEN",
+                        "Pontuação": 10
+                    },
+                    {
+                        "Descrição": "Vinculado a mais de quatro AEN",
                         "Pontuação": 15
                     }
                 ]
@@ -176,7 +539,7 @@
                     },
                     {
                         "Descrição": "Sim",
-                        "Pontuação": 10
+                        "Pontuação": 5
                     }
                 ]
             },
@@ -190,7 +553,7 @@
                     },
                     {
                         "Descrição": "Sim",
-                        "Pontuação": 10
+                        "Pontuação": 5
                     }
                 ]
             }
@@ -202,15 +565,19 @@
                 "opcoes": [
                     {
                         "Descrição": "Até 10%",
-                        "Pontuação": 21
+                        "Pontuação": 3
                     },
                     {
                         "Descrição": "De 10% a 20%",
-                        "Pontuação": 45
+                        "Pontuação": 7
                     },
                     {
-                        "Descrição": "Acima de 20%",
-                        "Pontuação": 40
+                        "Descrição": "De 20% a 30%",
+                        "Pontuação": 10
+                    },
+                    {
+                        "Descrição": "Acima de 30%",
+                        "Pontuação": 20
                     }
                 ]
             }
@@ -283,5 +650,12 @@
                 ]
             }
         ]
+    },
+    "riscos": {
+        "Muito Alto": 300,
+        "Alto": 250,
+        "Médio": 200,
+        "Baixo": 185,
+        "Muito Baixo": 150
     }
 }
